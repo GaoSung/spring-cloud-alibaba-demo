@@ -1,0 +1,58 @@
+server:
+  port: 8611
+  servlet:
+    context-path: /gateway
+
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+        max-retry: 5
+        config-retry-time: 3000
+#    gateway:
+#      globalcors:
+#        cors-configurations:
+#          '[/**]':
+#            allowedOrigins: "*"
+#            allowedMethods:
+#              - GET, POST, PUT, DELETE, OPTIONS
+#      routes:                     # Route Predicate Factories
+#        - id: order-service #自定义的路由ID,保持唯一
+#          uri: lb://order-service  #目标服务地址，以lb://开头(lb代表从注册中心获取服务)
+#          predicates:               #路由条件，Predicate 接受一个输入参数，返回一个布尔值结果。该接口包含多种默认方法来将 Predicate 组合成其他复杂的逻辑（比如：与，或，非）。
+#            #        - Path=/demo/service    #路由规则，为每一个服务定义一个唯一的路由前缀，所有以路由前缀开头的请求都路由到对应的服务
+#            - Path=/order/**     #Path Route Predicate Factory
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8888/auth/token_key
+#      client:
+#        registration:
+#          comm:
+#            client-id: comm
+#            client-secret: commsecret
+#            scope: all
+#            authorization-grant-type: authorization_code
+#            redirect-uri: http://localhost:8611/login/oauth2/code/comm
+#        provider:
+#          comm:
+#            authorization-uri: http://localhost:8888/auth/oauth/authorize
+#            token-uri: http://localhost:8888/auth/oauth/token
+#            user-info-uri: http://localhost:8888/auth/api/user/me
+#            user-name-attribute: name
+#            jwk-set-uri: http://localhost:8888/auth/oauth/token_key
+logging:
+  level:
+    com:
+      alibaba:
+        nacos: ERROR
+    org:
+      spring:
+        security: DEBUG
+        cloud: DEBUG

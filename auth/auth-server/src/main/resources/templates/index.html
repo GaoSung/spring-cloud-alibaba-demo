@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>欢迎登录</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/vendor/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/fonts/iconic/css/material-design-iconic-font.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/util.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+</head>
+<head>
+    <meta charset="UTF-8">
+    <title>统一认证中心</title>
+</head>
+<body th:style="'background-image:url(' + @{/images/bg-03.jpg} + ');'">
+    <div>
+        <a th:href="${#request.getContextPath()+'/auth/logout'}" style="float: right;">
+            退出
+        </a>
+    </div>
+    <div class="container-login100" style="margin-inline-start: auto;">
+        <h1 style="text-align: center">欢迎</h1>
+    </div>
+</body>
+</html>
